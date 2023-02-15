@@ -1,0 +1,14 @@
+.body-background {
+    background-color: black;
+    background-image: url(LotRMap.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.nav-background {
+    background-color: black;
+    background-image: url(oneRing.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+}
