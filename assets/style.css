@@ -6,9 +6,16 @@
     background-size: 100% 100%;
 }
 
-.nav-background {
-    background-color: black;
-    background-image: url(oneRing.gif);
-    background-repeat: no-repeat;
-    background-position: center;
+.answer-padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.question-padding {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.radio-padding {
+    padding-left: 30px;
 }
