@@ -65,8 +65,10 @@ const radioThree = document.getElementById('flexRadioDefault3')
 const answerFour = document.getElementById('answerFour');
 const radioFour = document.getElementById('flexRadioDefault4')
 const submitBtn = document.getElementById('submitBtn');
+const timer = document.querySelector('#timer');
 let randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
-let answeredCorrectly = localStorage.getItem('answerCorrectly')||0;
+let answeredCorrectly = localStorage.getItem('answeredCorrectly')||0;
+let answeredIncorrectly = localStorage.getItem('answeredIncorrectly')||0;
 const usedQuestions = [];
 console.log(randomQuestionIndex)
 
@@ -89,7 +91,33 @@ function handleStartEvent() {
 
     usedQuestions.push(randomQuestionIndex);
 
+    setTimer(60);
+
 }
+
+function setTimer(time) {
+    let timeRemaining = time;
+
+    const timerInterval = setInterval(()=>{
+        timeRemaining--;
+        timer.textContent = timeRemaining;
+
+        const penaltyCheck = setInterval(()=>{
+            if(answeredIncorrectly > 0){
+                timeRemaining-=5*answeredIncorrectly;
+                answeredIncorrectly--;
+            }
+        },500)
+
+        if(timeRemaining === 0) {
+            clearInterval(timerInterval);
+        }
+    },1000)
+
+}
+
+
+
 
 
 function handleRadioOneEvent() {
@@ -153,6 +181,7 @@ function handleSubmitEvent() {
         answeredCorrectly++;
         console.log('correct');
     }else{
+        answeredIncorrectly++;
         console.log('incorrect');
     }
     
