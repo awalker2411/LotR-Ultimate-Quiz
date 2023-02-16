@@ -57,11 +57,16 @@ const quizCard = document.getElementById('quizCard');
 const startBtn = document.getElementById('startQuizBtn');
 const questionSpace = document.getElementById('questionSpace');
 const answerOne = document.getElementById('answerOne');
+const radioOne = document.getElementById('flexRadioDefault1')
 const answerTwo = document.getElementById('answerTwo');
+const radioTwo = document.getElementById('flexRadioDefault2')
 const answerThree = document.getElementById('answerThree');
+const radioThree = document.getElementById('flexRadioDefault3')
 const answerFour = document.getElementById('answerFour');
+const radioFour = document.getElementById('flexRadioDefault4')
 const submitBtn = document.getElementById('submitBtn');
 let randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
+let answeredCorrectly = localStorage.getItem('answerCorrectly')||0;
 const usedQuestions = [];
 console.log(randomQuestionIndex)
 
@@ -80,15 +85,112 @@ function handleStartEvent() {
     answerThree.innerHTML = questionsArray[randomQuestionIndex].answerThree;
     answerFour.innerHTML = questionsArray[randomQuestionIndex].answerFour;
 
+    localStorage.setItem('randomQuestionIndex', randomQuestionIndex);
+
+    usedQuestions.push(randomQuestionIndex);
+
+}
+
+
+function handleRadioOneEvent() {
+    if(radioOne.classList.contains('checked')){
+        return;
+    }
+
+    radioOne.classList.add('checked');
+    radioTwo.classList.remove('checked');
+    radioThree.classList.remove('checked');
+    radioFour.classList.remove('checked');
+}
+
+
+function handleRadioTwoEvent() {
+    if(radioTwo.classList.contains('checked')){
+        return;
+    }
+
+    radioOne.classList.remove('checked');
+    radioTwo.classList.add('checked');
+    radioThree.classList.remove('checked');
+    radioFour.classList.remove('checked');
+}
+
+
+function handleRadioThreeEvent() {
+    if(radioThree.classList.contains('checked')){
+        return;
+    }
+
+    radioOne.classList.remove('checked');
+    radioTwo.classList.remove('checked');
+    radioThree.classList.add('checked');
+    radioFour.classList.remove('checked');
+}
+
+
+function handleRadioFourEvent() {
+    if(radioFour.classList.contains('checked')){
+        return;
+    }
+
+    radioOne.classList.remove('checked');
+    radioTwo.classList.remove('checked');
+    radioThree.classList.remove('checked');
+    radioFour.classList.add('checked');
 }
 
 
 function handleSubmitEvent() {
+    if(!radioOne.classList.contains('checked') && !radioTwo.classList.contains('checked') && !radioThree.classList.contains('checked') && !radioFour.classList.contains('checked')) {
+        return;
+    }
+    let randomQuestionIndex;
+    randomQuestionIndex = localStorage.getItem('randomQuestionIndex');
+
+    let selectedAnswer = document.querySelector('.checked').nextElementSibling.textContent;
+
+    if(selectedAnswer === questionsArray[randomQuestionIndex].correctAnswer){
+        answeredCorrectly++;
+        console.log('correct');
+    }else{
+        console.log('incorrect');
+    }
     
+    randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
+    
+    if(usedQuestions.includes(randomQuestionIndex)){
+        while(usedQuestions.includes(randomQuestionIndex)){
+            randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
+            break;
+        }
+    }
+
+    document.querySelector('.checked').checked = false;
+
+    radioOne.classList.remove('checked');
+    radioTwo.classList.remove('checked');
+    radioThree.classList.remove('checked');
+    radioFour.classList.remove('checked');
+
+    questionSpace.innerHTML = questionsArray[randomQuestionIndex].question;
+    answerOne.innerHTML = questionsArray[randomQuestionIndex].answerOne;
+    answerTwo.innerHTML = questionsArray[randomQuestionIndex].answerTwo;
+    answerThree.innerHTML = questionsArray[randomQuestionIndex].answerThree;
+    answerFour.innerHTML = questionsArray[randomQuestionIndex].answerFour;
+
+    localStorage.setItem('randomQuestionIndex', randomQuestionIndex);
+
+    usedQuestions.push(randomQuestionIndex);
+
+
 }
 
 startBtn.addEventListener('click', handleStartEvent);
 submitBtn.addEventListener('click', handleSubmitEvent);
+radioOne.addEventListener('click', handleRadioOneEvent);
+radioTwo.addEventListener('click', handleRadioTwoEvent);
+radioThree.addEventListener('click', handleRadioThreeEvent);
+radioFour.addEventListener('click', handleRadioFourEvent);
 
 
 
