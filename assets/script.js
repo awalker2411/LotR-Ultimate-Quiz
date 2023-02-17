@@ -1,3 +1,73 @@
+const clipBox = document.querySelector('#clipSpace');
+
+const movieClips = [
+    "https://www.youtube.com/embed/hesOeiv_l7I?autoplay=1&mute=1", //Boromir and Aragorn in Lothlorien
+    "https://www.youtube.com/embed/Rag_9J1ZC2g?autoplay=1&mute=1", //Gandalf 'White Shores' talk with Pippin
+    "https://www.youtube.com/embed/_eY9PLAdU_I?autoplay=1&mute=1", //Track down Merry and Pippin
+    "https://www.youtube.com/embed/FuEEiLOTfs4?autoplay=1&mute=1", //Siege of Minas Tirith Beginning
+    "https://www.youtube.com/embed/ApUu1DA5HCs?autoplay=1&mute=1", //Black Gates Speech - Aragorn
+    "https://www.youtube.com/embed/W7_c-R7i8F4?autoplay=1&mute=1", //No Man can kill Me
+    "https://www.youtube.com/embed/9-t88EZkBLo?autoplay=1&mute=1", //Charge of the Rohirrim
+    "https://www.youtube.com/embed/ruRRcSrLnF0?autoplay=1&mute=1", //Arwen saves Frodo from Nazguls
+    "https://www.youtube.com/embed/hUS9Oy96YPQ?autoplay=1&mute=1", //Gandalf vs. Saruman
+    "https://www.youtube.com/embed/3bReJswiMGM?autoplay=1&mute=1", //You Shall Not Pass
+    "https://www.youtube.com/embed/k1U1c5hdKGU?autoplay=1&mute=1", //Sneaky Little Hobbitses
+    "https://www.youtube.com/embed/FGrLrBYe_4U?autoplay=1&mute=1", //Helms Deep Battle Begins
+    "https://www.youtube.com/embed/Cvr5Nf8eUpg?autoplay=1&mute=1", //Bilbo Birthday Disappearance
+    "https://www.youtube.com/embed/VhCts2eBJus?autoplay=1&mute=1", //Weathertop
+    "https://www.youtube.com/embed/Bypor4e04rg?autoplay=1&mute=1", //Council of the Ring
+    "https://www.youtube.com/embed/dkXwYPd2ctk?autoplay=1&mute=1", //Cave Troll
+    "https://www.youtube.com/embed/k0-C8TMl0M4?autoplay=1&mute=1", //Galadriel's Visions
+    "https://www.youtube.com/embed/mpaQnkcLCvM?autoplay=1&mute=1", //Boromir's Sacrifice
+    "https://www.youtube.com/embed/3H3MQooOLn4?autoplay=1&mute=1", //Sam goes with Frodo across the Anduin
+    "https://www.youtube.com/embed/yW2tqYG1g4A?autoplay=1&mute=1", //Gollum attacks frodo and sam
+    "https://www.youtube.com/embed/HML-oaJ6DB4?autoplay=1&mute=1", //Gandalf the White reveal
+    "https://www.youtube.com/embed/gtEKXaUkQRI?autoplay=1&mute=1", //Gandalf heals Theoden
+    "https://www.youtube.com/embed/dwbiMcbaqHE?autoplay=1&mute=1", //Warg rider battle
+    "https://www.youtube.com/embed/lKGXHy1zjsc?autoplay=1&mute=1", //Legolas, kill him
+    "https://www.youtube.com/embed/dJUNMTFZslk?autoplay=1&mute=1", //The Horn of Helm Hammerhand
+    "https://www.youtube.com/embed/A8clCP2VvaM?autoplay=1&mute=1", //Ents attack Isengard
+    "https://www.youtube.com/embed/lKSKJZ-XdAk?autoplay=1&mute=1", //King of the Dead
+    "https://www.youtube.com/embed/JSKcFHvriG0?autoplay=1&mute=1", //Sam fights Shelob
+    "https://www.youtube.com/embed/BO5wdW5gk0U?autoplay=1&mute=1", //Denethor burns
+    "https://www.youtube.com/embed/b9gQ-gqVWp4?autoplay=1&mute=1", //Legolas takes down the Oliphaunt
+    "https://www.youtube.com/embed/7curfSGOhPI?autoplay=1&mute=1", //Gollum vs Frodo
+    "https://www.youtube.com/embed/0wgkg3-bMEA?autoplay=1&mute=1", //Ring is destroyed
+    "https://www.youtube.com/embed/EFlB9AENWGs?autoplay=1&mute=1", //Aragorn Coranation
+
+];
+
+document.addEventListener("DOMContentLoaded", function() {
+    const randomIndex = Math.floor(Math.random() * movieClips.length);
+    const clip = movieClips[randomIndex];
+
+    clipBox.src = clip;
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const questionsArray = [];
 
 function Questions(question, answerOne, answerTwo, answerThree, answerFour, correctAnswer) {

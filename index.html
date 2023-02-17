@@ -24,25 +24,32 @@
             <span class="navbar-text text-warning">One Quiz to Rule Them All</span>
         </form>
     </nav>
+    
+    <main>
+        <section class="container text-center row top-50 start-50 translate-middle position-absolute h-50 d-flex p-s">
 
-    <div class="card position-absolute top-50 start-50 translate-middle text-center text-bg-dark" id="introCard" style="width: 30vw; height: 30vw;">
-        <img src="assets/oneRing.gif" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h1 class="card-title">About the Quiz</h1>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-    </div>
-
-    <div class="card position-absolute top-50 start-50 translate-middle text-center text-bg-dark d-none" id="quizCard" style="width: 30vw; height: 30vw;">
-        <h2 class="card-header question-padding" id="questionSpace"></h2>
-            <div>
-                <div class="form-check answer-padding text-start fs-4">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" id="answerOne" for="flexRadioDefault1"></label>
+            <iframe src="" allow="autoplay" allowfullscreen class="col" id="clipSpace"></iframe>
+            
+            <div class="card text-center text-bg-dark col" id="introCard">
+                <img src="assets/oneRing.gif" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1 class="card-title">About the Quiz</h1>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
-                <div class="form-check answer-padding text-start fs-4">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" id="answerTwo" for="flexRadioDefault2"></label>
+            </div>
+            
+            
+            
+            <div class="card text-center text-bg-dark col d-none" id="quizCard">
+                <h2 class="card-header question-padding" id="questionSpace"></h2>
+                <div>
+                    <div class="form-check answer-padding text-start fs-4">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" id="answerOne" for="flexRadioDefault1"></label>
+                    </div>
+                    <div class="form-check answer-padding text-start fs-4">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" id="answerTwo" for="flexRadioDefault2"></label>
                 </div>
                 <div class="form-check answer-padding text-start fs-4">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
@@ -54,10 +61,14 @@
                 </div>
                 <button type="button" id="submitBtn" class="btn btn-primary btn-lg fs-4">Submit</button>
                 <h3 class="answer-padding">Time Left: <span class="badge bg-secondary" id="timer">60</span></h3>
+                </div>
             </div>
-    </div>
+        
+        </section>
 
+    </main>
     
     
 </body>
 </html>
+            
