@@ -18,14 +18,11 @@ const movieClips = [
     "https://www.youtube.com/embed/Bypor4e04rg?autoplay=1&mute=1", //Council of the Ring
     "https://www.youtube.com/embed/dkXwYPd2ctk?autoplay=1&mute=1", //Cave Troll
     "https://www.youtube.com/embed/k0-C8TMl0M4?autoplay=1&mute=1", //Galadriel's Visions
-    "https://www.youtube.com/embed/mpaQnkcLCvM?autoplay=1&mute=1", //Boromir's Sacrifice
     "https://www.youtube.com/embed/3H3MQooOLn4?autoplay=1&mute=1", //Sam goes with Frodo across the Anduin
     "https://www.youtube.com/embed/yW2tqYG1g4A?autoplay=1&mute=1", //Gollum attacks frodo and sam
     "https://www.youtube.com/embed/HML-oaJ6DB4?autoplay=1&mute=1", //Gandalf the White reveal
     "https://www.youtube.com/embed/gtEKXaUkQRI?autoplay=1&mute=1", //Gandalf heals Theoden
-    "https://www.youtube.com/embed/dwbiMcbaqHE?autoplay=1&mute=1", //Warg rider battle
     "https://www.youtube.com/embed/lKGXHy1zjsc?autoplay=1&mute=1", //Legolas, kill him
-    "https://www.youtube.com/embed/dJUNMTFZslk?autoplay=1&mute=1", //The Horn of Helm Hammerhand
     "https://www.youtube.com/embed/A8clCP2VvaM?autoplay=1&mute=1", //Ents attack Isengard
     "https://www.youtube.com/embed/lKSKJZ-XdAk?autoplay=1&mute=1", //King of the Dead
     "https://www.youtube.com/embed/JSKcFHvriG0?autoplay=1&mute=1", //Sam fights Shelob
@@ -124,7 +121,10 @@ addQuestions(`How many Elven Rings of Power were there?`, 'One', 'Three', 'Seven
 
 const introCard = document.getElementById('introCard');
 const quizCard = document.getElementById('quizCard');
+const scoresCard = document.querySelector('#scoresCard')
 const startBtn = document.getElementById('startQuizBtn');
+const scoreBtn = document.querySelector('#scoreBtn');
+const scoresTitle = document.querySelector('#scoresTitle');
 const questionSpace = document.getElementById('questionSpace');
 const answerOne = document.getElementById('answerOne');
 const radioOne = document.getElementById('flexRadioDefault1')
@@ -136,55 +136,129 @@ const answerFour = document.getElementById('answerFour');
 const radioFour = document.getElementById('flexRadioDefault4')
 const submitBtn = document.getElementById('submitBtn');
 const timer = document.querySelector('#timer');
+const quizEndCard = document.querySelector(`#quizEndCard`);
+const username = document.querySelector(`#username`);
+const userSubmitBtn = document.querySelector('#userSubmitBtn');
 let randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
 let answeredCorrectly = localStorage.getItem('answeredCorrectly')||0;
 let answeredIncorrectly = localStorage.getItem('answeredIncorrectly')||0;
 const usedQuestions = [];
-console.log(randomQuestionIndex)
+const allUserScores = [];
 
 
 function handleStartEvent() {
-    if(introCard.classList.contains('d-none')){
+    if(!quizCard.classList.contains('d-none')){
         return;
     }else{
         introCard.classList.add('d-none');
         quizCard.classList.remove('d-none');
+        scoresCard.classList.add('d-none');
     }
-
+    
     questionSpace.innerHTML = questionsArray[randomQuestionIndex].question;
     answerOne.innerHTML = questionsArray[randomQuestionIndex].answerOne;
     answerTwo.innerHTML = questionsArray[randomQuestionIndex].answerTwo;
     answerThree.innerHTML = questionsArray[randomQuestionIndex].answerThree;
     answerFour.innerHTML = questionsArray[randomQuestionIndex].answerFour;
-
+    
     localStorage.setItem('randomQuestionIndex', randomQuestionIndex);
-
+    
     usedQuestions.push(randomQuestionIndex);
-
+    
     setTimer(60);
-
+    
 }
+
+
+function handleScoreEvent() {
+    if(!scoresCard.classList.contains('d-none')){
+        return;
+    }else{
+        introCard.classList.add('d-none');
+        quizCard.classList.add('d-none');
+        quizEndCard.classList.add('d-none');
+        scoresCard.classList.remove('d-none');
+    }
+
+
+    if(document.querySelector('#scoresList')){
+        document.querySelector('#scoresList').remove();
+    }
+
+
+    const scoresCardContent = document.querySelector('#scoresCardContent');
+
+    if(allUserScores.length === 0){
+        scoresCardContent.innerHTML = "You haven't taken the LotR: Ultimate Quiz yet! Click the 'Start Quiz' button at the top of the page to begin!"
+    }else{
+        const grabScores = JSON.parse(localStorage.getItem('allUserScores'));
+
+        const newList = document.createElement('ul')
+        newList.setAttribute('id', 'scoresList');
+        newList.classList.add('list-group list-group-numbered');
+        scoresTitle.parentNode.insertBefore(newList, scoresTitle.nextSibling);
+
+        grabScores.foreach(function(userQuizInfo){
+            const userContent = document.createElement('li');
+            userContent.classList.add('card-text');
+        })
+    }
+}
+
 
 function setTimer(time) {
     let timeRemaining = time;
-
+    
     const timerInterval = setInterval(()=>{
         timeRemaining--;
         timer.textContent = timeRemaining;
-
+        
         const penaltyCheck = setInterval(()=>{
             if(answeredIncorrectly > 0){
                 timeRemaining-=5*answeredIncorrectly;
                 answeredIncorrectly--;
             }
         },500)
-
-        if(timeRemaining === 0) {
+        
+        if(timeRemaining === 0||timeRemaining < 0) {
             clearInterval(timerInterval);
+            quizCard.classList.add(`d-none`);
+            quizEndCard.classList.remove(`d-none`);
         }
     },1000)
-
+    
 }
+
+
+
+function UserScore(user, score, date) {
+    this.user = user;
+    this.score = score;
+    this.date = date;
+}
+
+function addUserScore(user, score, date) {
+    const newUserScore = new UserScore(user, score, date);
+    allUserScores.push(newUserScore);
+    localStorage.setItem('allUserScores', JSON.stringify(allUserScores));
+}
+
+function saveUserScore() {
+    const usernameValue = username.value;
+    
+    const dateObj = new Date();
+    const month = dateObj.getUTCMonth() + 1;
+    const day = dateObj.getUTCDate();
+    const year = dateObj.getUTCFullYear();
+    const date = "Date: "+ day +", "+ month +", "+ year;
+
+    addUserScore(usernameValue, answeredCorrectly, date);
+
+    userSubmitBtn.classList.add('d-none');
+}
+
+
+
 
 
 
@@ -194,7 +268,7 @@ function handleRadioOneEvent() {
     if(radioOne.classList.contains('checked')){
         return;
     }
-
+    
     radioOne.classList.add('checked');
     radioTwo.classList.remove('checked');
     radioThree.classList.remove('checked');
@@ -238,6 +312,8 @@ function handleRadioFourEvent() {
 }
 
 
+
+
 function handleSubmitEvent() {
     if(!radioOne.classList.contains('checked') && !radioTwo.classList.contains('checked') && !radioThree.classList.contains('checked') && !radioFour.classList.contains('checked')) {
         return;
@@ -258,10 +334,13 @@ function handleSubmitEvent() {
     randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
     
     if(usedQuestions.includes(randomQuestionIndex)){
-        while(usedQuestions.includes(randomQuestionIndex)){
+        function getNewQuestion() {
             randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
-            break;
+            if(usedQuestions.includes(randomQuestionIndex)){
+                getNewQuestion();
+            }
         }
+        getNewQuestion();
     }
 
     document.querySelector('.checked').checked = false;
@@ -284,12 +363,15 @@ function handleSubmitEvent() {
 
 }
 
+
 startBtn.addEventListener('click', handleStartEvent);
+scoreBtn.addEventListener('click', handleScoreEvent);
 submitBtn.addEventListener('click', handleSubmitEvent);
 radioOne.addEventListener('click', handleRadioOneEvent);
 radioTwo.addEventListener('click', handleRadioTwoEvent);
 radioThree.addEventListener('click', handleRadioThreeEvent);
 radioFour.addEventListener('click', handleRadioFourEvent);
+userSubmitBtn.addEventListener('click', saveUserScore);
 
 
 

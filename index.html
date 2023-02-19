@@ -31,10 +31,18 @@
             <iframe src="" allow="autoplay" allowfullscreen class="col" id="clipSpace"></iframe>
             
             <div class="card text-center text-bg-dark col" id="introCard">
-                <img src="assets/oneRing.gif" class="card-img-top" alt="...">
+                <img src="assets/oneRing.gif" class="card-img-top" alt="The One Ring drops on Frodo's finger">
                 <div class="card-body">
                     <h1 class="card-title">About the Quiz</h1>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+
+            <div class="card text-center text-bg-dark col d-none" id="scoresCard">
+                <img src="assets/scoresGif.gif" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1 class="card-title" id="scoresTitle">Your Quiz Scores</h1>
+                    <p class="card-text" id="scoresCardContent"></p>
                 </div>
             </div>
             
@@ -61,6 +69,19 @@
                 </div>
                 <button type="button" id="submitBtn" class="btn btn-primary btn-lg fs-4">Submit</button>
                 <h3 class="answer-padding">Time Left: <span class="badge bg-secondary" id="timer">60</span></h3>
+                </div>
+            </div>
+
+            <div class="card text-center text-bg-dark col d-none" id="quizEndCard">
+                <img src="assets/endQuizGif.gif" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1 class="card-title">You've Completed the Quiz!</h1>
+                    <p class="card-text">Congrats on completing the Lord of the Rings: Ultimate Quiz!</p>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">@</span>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" id="username">
+                    </div>
+                    <button type="button" id="userSubmitBtn" class="btn btn-primary btn-lg fs-4">Save Your Score!</button>
                 </div>
             </div>
         
