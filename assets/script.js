@@ -16,13 +16,11 @@ const movieClips = [
     "https://www.youtube.com/embed/Cvr5Nf8eUpg?autoplay=1&mute=1", //Bilbo Birthday Disappearance
     "https://www.youtube.com/embed/VhCts2eBJus?autoplay=1&mute=1", //Weathertop
     "https://www.youtube.com/embed/Bypor4e04rg?autoplay=1&mute=1", //Council of the Ring
-    "https://www.youtube.com/embed/dkXwYPd2ctk?autoplay=1&mute=1", //Cave Troll
     "https://www.youtube.com/embed/k0-C8TMl0M4?autoplay=1&mute=1", //Galadriel's Visions
     "https://www.youtube.com/embed/3H3MQooOLn4?autoplay=1&mute=1", //Sam goes with Frodo across the Anduin
     "https://www.youtube.com/embed/yW2tqYG1g4A?autoplay=1&mute=1", //Gollum attacks frodo and sam
     "https://www.youtube.com/embed/HML-oaJ6DB4?autoplay=1&mute=1", //Gandalf the White reveal
     "https://www.youtube.com/embed/gtEKXaUkQRI?autoplay=1&mute=1", //Gandalf heals Theoden
-    "https://www.youtube.com/embed/lKGXHy1zjsc?autoplay=1&mute=1", //Legolas, kill him
     "https://www.youtube.com/embed/A8clCP2VvaM?autoplay=1&mute=1", //Ents attack Isengard
     "https://www.youtube.com/embed/lKSKJZ-XdAk?autoplay=1&mute=1", //King of the Dead
     "https://www.youtube.com/embed/JSKcFHvriG0?autoplay=1&mute=1", //Sam fights Shelob
@@ -124,6 +122,7 @@ const quizCard = document.getElementById('quizCard');
 const scoresCard = document.querySelector('#scoresCard')
 const startBtn = document.getElementById('startQuizBtn');
 const scoreBtn = document.querySelector('#scoreBtn');
+const aboutBtn = document.querySelector(`#aboutBtn`);
 const scoresTitle = document.querySelector('#scoresTitle');
 const questionSpace = document.getElementById('questionSpace');
 const answerOne = document.getElementById('answerOne');
@@ -154,7 +153,25 @@ function handleStartEvent() {
         quizCard.classList.remove('d-none');
         scoresCard.classList.add('d-none');
     }
+
+    radioOne.classList.remove('checked');
+    radioTwo.classList.remove('checked');
+    radioThree.classList.remove('checked');
+    radioFour.classList.remove('checked');
+
+    if(answeredCorrectly > 0){
+        function resetAnsweredCorrectly(){
+            answeredCorrectly--;
+
+            if(answeredCorrectly > 0){
+                resetAnsweredCorrectly();
+            }
+        }
+        resetAnsweredCorrectly();
+    }
     
+    let randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
+
     questionSpace.innerHTML = questionsArray[randomQuestionIndex].question;
     answerOne.innerHTML = questionsArray[randomQuestionIndex].answerOne;
     answerTwo.innerHTML = questionsArray[randomQuestionIndex].answerTwo;
@@ -163,6 +180,9 @@ function handleStartEvent() {
     
     localStorage.setItem('randomQuestionIndex', randomQuestionIndex);
     
+    if(usedQuestions.length > 0){
+        usedQuestions.length = 0;
+    }
     usedQuestions.push(randomQuestionIndex);
     
     setTimer(60);
@@ -179,15 +199,15 @@ function handleScoreEvent() {
         quizEndCard.classList.add('d-none');
         scoresCard.classList.remove('d-none');
     }
-
-
+    
+    
     if(document.querySelector('#scoresList')){
         document.querySelector('#scoresList').remove();
     }
-
-
+    
+    
     const scoresCardContent = document.querySelector('#scoresCardContent');
-
+    
     if(allUserScores.length === 0){
         scoresCardContent.innerHTML = "You haven't taken the LotR: Ultimate Quiz yet! Click the 'Start Quiz' button at the top of the page to begin!"
     }else{
@@ -195,12 +215,15 @@ function handleScoreEvent() {
 
         const newList = document.createElement('ul')
         newList.setAttribute('id', 'scoresList');
-        newList.classList.add('list-group list-group-numbered');
+        newList.classList.add('list-group');
+        newList.classList.add('list-group-numbered');
         scoresTitle.parentNode.insertBefore(newList, scoresTitle.nextSibling);
-
-        grabScores.foreach(function(userQuizInfo){
+        
+        grabScores.forEach(function(userQuizInfo){
             const userContent = document.createElement('li');
-            userContent.classList.add('card-text');
+            userContent.classList.add('list-group-item');
+            userContent.innerHTML = `Username: `+userQuizInfo.user+` | Score: `+userQuizInfo.score+` | `+userQuizInfo.date;
+            newList.appendChild(userContent);
         })
     }
 }
@@ -224,6 +247,10 @@ function setTimer(time) {
             clearInterval(timerInterval);
             quizCard.classList.add(`d-none`);
             quizEndCard.classList.remove(`d-none`);
+            if(userSubmitBtn.classList.contains('d-none')){
+                userSubmitBtn.classList.remove('d-none');
+            }
+            timer.textContent = `60`;
         }
     },1000)
     
@@ -251,9 +278,9 @@ function saveUserScore() {
     const day = dateObj.getUTCDate();
     const year = dateObj.getUTCFullYear();
     const date = "Date: "+ day +", "+ month +", "+ year;
-
+    
     addUserScore(usernameValue, answeredCorrectly, date);
-
+    
     userSubmitBtn.classList.add('d-none');
 }
 
@@ -280,7 +307,7 @@ function handleRadioTwoEvent() {
     if(radioTwo.classList.contains('checked')){
         return;
     }
-
+    
     radioOne.classList.remove('checked');
     radioTwo.classList.add('checked');
     radioThree.classList.remove('checked');
@@ -292,7 +319,7 @@ function handleRadioThreeEvent() {
     if(radioThree.classList.contains('checked')){
         return;
     }
-
+    
     radioOne.classList.remove('checked');
     radioTwo.classList.remove('checked');
     radioThree.classList.add('checked');
@@ -304,7 +331,7 @@ function handleRadioFourEvent() {
     if(radioFour.classList.contains('checked')){
         return;
     }
-
+    
     radioOne.classList.remove('checked');
     radioTwo.classList.remove('checked');
     radioThree.classList.remove('checked');
@@ -320,9 +347,9 @@ function handleSubmitEvent() {
     }
     let randomQuestionIndex;
     randomQuestionIndex = localStorage.getItem('randomQuestionIndex');
-
+    
     let selectedAnswer = document.querySelector('.checked').nextElementSibling.textContent;
-
+    
     if(selectedAnswer === questionsArray[randomQuestionIndex].correctAnswer){
         answeredCorrectly++;
         console.log('correct');
@@ -330,6 +357,7 @@ function handleSubmitEvent() {
         answeredIncorrectly++;
         console.log('incorrect');
     }
+    
     
     randomQuestionIndex = Math.floor(Math.random() * questionsArray.length);
     
@@ -344,18 +372,18 @@ function handleSubmitEvent() {
     }
 
     document.querySelector('.checked').checked = false;
-
+    
     radioOne.classList.remove('checked');
     radioTwo.classList.remove('checked');
     radioThree.classList.remove('checked');
     radioFour.classList.remove('checked');
-
+    
     questionSpace.innerHTML = questionsArray[randomQuestionIndex].question;
     answerOne.innerHTML = questionsArray[randomQuestionIndex].answerOne;
     answerTwo.innerHTML = questionsArray[randomQuestionIndex].answerTwo;
     answerThree.innerHTML = questionsArray[randomQuestionIndex].answerThree;
     answerFour.innerHTML = questionsArray[randomQuestionIndex].answerFour;
-
+    
     localStorage.setItem('randomQuestionIndex', randomQuestionIndex);
 
     usedQuestions.push(randomQuestionIndex);
@@ -366,6 +394,7 @@ function handleSubmitEvent() {
 
 startBtn.addEventListener('click', handleStartEvent);
 scoreBtn.addEventListener('click', handleScoreEvent);
+aboutBtn.addEventListener('click', handleAboutEvent);
 submitBtn.addEventListener('click', handleSubmitEvent);
 radioOne.addEventListener('click', handleRadioOneEvent);
 radioTwo.addEventListener('click', handleRadioTwoEvent);
