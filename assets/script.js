@@ -122,7 +122,6 @@ const quizCard = document.getElementById('quizCard');
 const scoresCard = document.querySelector('#scoresCard')
 const startBtn = document.getElementById('startQuizBtn');
 const scoreBtn = document.querySelector('#scoreBtn');
-const aboutBtn = document.querySelector(`#aboutBtn`);
 const scoresTitle = document.querySelector('#scoresTitle');
 const questionSpace = document.getElementById('questionSpace');
 const answerOne = document.getElementById('answerOne');
@@ -394,7 +393,6 @@ function handleSubmitEvent() {
 
 startBtn.addEventListener('click', handleStartEvent);
 scoreBtn.addEventListener('click', handleScoreEvent);
-aboutBtn.addEventListener('click', handleAboutEvent);
 submitBtn.addEventListener('click', handleSubmitEvent);
 radioOne.addEventListener('click', handleRadioOneEvent);
 radioTwo.addEventListener('click', handleRadioTwoEvent);
