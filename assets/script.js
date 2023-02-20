@@ -1,34 +1,34 @@
 const clipBox = document.querySelector('#clipSpace');
 
 const movieClips = [
-    "https://www.youtube.com/embed/hesOeiv_l7I?autoplay=1&mute=1", //Boromir and Aragorn in Lothlorien
-    "https://www.youtube.com/embed/Rag_9J1ZC2g?autoplay=1&mute=1", //Gandalf 'White Shores' talk with Pippin
-    "https://www.youtube.com/embed/_eY9PLAdU_I?autoplay=1&mute=1", //Track down Merry and Pippin
-    "https://www.youtube.com/embed/FuEEiLOTfs4?autoplay=1&mute=1", //Siege of Minas Tirith Beginning
-    "https://www.youtube.com/embed/ApUu1DA5HCs?autoplay=1&mute=1", //Black Gates Speech - Aragorn
-    "https://www.youtube.com/embed/W7_c-R7i8F4?autoplay=1&mute=1", //No Man can kill Me
-    "https://www.youtube.com/embed/9-t88EZkBLo?autoplay=1&mute=1", //Charge of the Rohirrim
-    "https://www.youtube.com/embed/ruRRcSrLnF0?autoplay=1&mute=1", //Arwen saves Frodo from Nazguls
-    "https://www.youtube.com/embed/hUS9Oy96YPQ?autoplay=1&mute=1", //Gandalf vs. Saruman
-    "https://www.youtube.com/embed/3bReJswiMGM?autoplay=1&mute=1", //You Shall Not Pass
-    "https://www.youtube.com/embed/k1U1c5hdKGU?autoplay=1&mute=1", //Sneaky Little Hobbitses
-    "https://www.youtube.com/embed/FGrLrBYe_4U?autoplay=1&mute=1", //Helms Deep Battle Begins
-    "https://www.youtube.com/embed/Cvr5Nf8eUpg?autoplay=1&mute=1", //Bilbo Birthday Disappearance
-    "https://www.youtube.com/embed/VhCts2eBJus?autoplay=1&mute=1", //Weathertop
-    "https://www.youtube.com/embed/Bypor4e04rg?autoplay=1&mute=1", //Council of the Ring
-    "https://www.youtube.com/embed/k0-C8TMl0M4?autoplay=1&mute=1", //Galadriel's Visions
-    "https://www.youtube.com/embed/3H3MQooOLn4?autoplay=1&mute=1", //Sam goes with Frodo across the Anduin
-    "https://www.youtube.com/embed/yW2tqYG1g4A?autoplay=1&mute=1", //Gollum attacks frodo and sam
-    "https://www.youtube.com/embed/HML-oaJ6DB4?autoplay=1&mute=1", //Gandalf the White reveal
-    "https://www.youtube.com/embed/gtEKXaUkQRI?autoplay=1&mute=1", //Gandalf heals Theoden
-    "https://www.youtube.com/embed/A8clCP2VvaM?autoplay=1&mute=1", //Ents attack Isengard
-    "https://www.youtube.com/embed/lKSKJZ-XdAk?autoplay=1&mute=1", //King of the Dead
-    "https://www.youtube.com/embed/JSKcFHvriG0?autoplay=1&mute=1", //Sam fights Shelob
-    "https://www.youtube.com/embed/BO5wdW5gk0U?autoplay=1&mute=1", //Denethor burns
-    "https://www.youtube.com/embed/b9gQ-gqVWp4?autoplay=1&mute=1", //Legolas takes down the Oliphaunt
-    "https://www.youtube.com/embed/7curfSGOhPI?autoplay=1&mute=1", //Gollum vs Frodo
-    "https://www.youtube.com/embed/0wgkg3-bMEA?autoplay=1&mute=1", //Ring is destroyed
-    "https://www.youtube.com/embed/EFlB9AENWGs?autoplay=1&mute=1", //Aragorn Coranation
+    "https://www.youtube-nocookie.com/embed/hesOeiv_l7I?autoplay=1&mute=1", //Boromir and Aragorn in Lothlorien
+    "https://www.youtube-nocookie.com/embed/Rag_9J1ZC2g?autoplay=1&mute=1", //Gandalf 'White Shores' talk with Pippin
+    "https://www.youtube-nocookie.com/embed/_eY9PLAdU_I?autoplay=1&mute=1", //Track down Merry and Pippin
+    "https://www.youtube-nocookie.com/embed/FuEEiLOTfs4?autoplay=1&mute=1", //Siege of Minas Tirith Beginning
+    "https://www.youtube-nocookie.com/embed/ApUu1DA5HCs?autoplay=1&mute=1", //Black Gates Speech - Aragorn
+    "https://www.youtube-nocookie.com/embed/W7_c-R7i8F4?autoplay=1&mute=1", //No Man can kill Me
+    "https://www.youtube-nocookie.com/embed/9-t88EZkBLo?autoplay=1&mute=1", //Charge of the Rohirrim
+    "https://www.youtube-nocookie.com/embed/ruRRcSrLnF0?autoplay=1&mute=1", //Arwen saves Frodo from Nazguls
+    "https://www.youtube-nocookie.com/embed/hUS9Oy96YPQ?autoplay=1&mute=1", //Gandalf vs. Saruman
+    "https://www.youtube-nocookie.com/embed/3bReJswiMGM?autoplay=1&mute=1", //You Shall Not Pass
+    "https://www.youtube-nocookie.com/embed/k1U1c5hdKGU?autoplay=1&mute=1", //Sneaky Little Hobbitses
+    "https://www.youtube-nocookie.com/embed/FGrLrBYe_4U?autoplay=1&mute=1", //Helms Deep Battle Begins
+    "https://www.youtube-nocookie.com/embed/Cvr5Nf8eUpg?autoplay=1&mute=1", //Bilbo Birthday Disappearance
+    "https://www.youtube-nocookie.com/embed/VhCts2eBJus?autoplay=1&mute=1", //Weathertop
+    "https://www.youtube-nocookie.com/embed/Bypor4e04rg?autoplay=1&mute=1", //Council of the Ring
+    "https://www.youtube-nocookie.com/embed/k0-C8TMl0M4?autoplay=1&mute=1", //Galadriel's Visions
+    "https://www.youtube-nocookie.com/embed/3H3MQooOLn4?autoplay=1&mute=1", //Sam goes with Frodo across the Anduin
+    "https://www.youtube-nocookie.com/embed/yW2tqYG1g4A?autoplay=1&mute=1", //Gollum attacks frodo and sam
+    "https://www.youtube-nocookie.com/embed/HML-oaJ6DB4?autoplay=1&mute=1", //Gandalf the White reveal
+    "https://www.youtube-nocookie.com/embed/gtEKXaUkQRI?autoplay=1&mute=1", //Gandalf heals Theoden
+    "https://www.youtube-nocookie.com/embed/A8clCP2VvaM?autoplay=1&mute=1", //Ents attack Isengard
+    "https://www.youtube-nocookie.com/embed/lKSKJZ-XdAk?autoplay=1&mute=1", //King of the Dead
+    "https://www.youtube-nocookie.com/embed/JSKcFHvriG0?autoplay=1&mute=1", //Sam fights Shelob
+    "https://www.youtube-nocookie.com/embed/BO5wdW5gk0U?autoplay=1&mute=1", //Denethor burns
+    "https://www.youtube-nocookie.com/embed/b9gQ-gqVWp4?autoplay=1&mute=1", //Legolas takes down the Oliphaunt
+    "https://www.youtube-nocookie.com/embed/7curfSGOhPI?autoplay=1&mute=1", //Gollum vs Frodo
+    "https://www.youtube-nocookie.com/embed/0wgkg3-bMEA?autoplay=1&mute=1", //Ring is destroyed
+    "https://www.youtube-nocookie.com/embed/EFlB9AENWGs?autoplay=1&mute=1", //Aragorn Coranation
 
 ];
 
@@ -110,6 +110,18 @@ addQuestions(`What's the name of the creature that Legolas says one of the Meara
 addQuestions(`Who swears he'll be dead before he sees the Ring in the hands of an Elf?`, 'Gandalf', 'Boromir', 'Denethor', 'Gimli', 'Gimli');
 addQuestions(`Who says to Frodo when joining the Fellowship: "If by my life or death I can protect you, I will"?`, 'Aragorn', 'Gimli', 'Legolas', 'Boromir', 'Aragorn');
 addQuestions(`How many Elven Rings of Power were there?`, 'One', 'Three', 'Seven', 'Nine', 'Three');
+addQuestions(`What Council member refers to the One Ring in Rivendell as "Isildur's bane"?`, 'Boromir', 'Aragorn', 'Gandalf', 'Elrond', 'Boromir');//1
+addQuestions(`What part of Aragorn's body is most obviously wounded after the Warg-Rider battle?`, 'His left leg', 'His left shoulder', 'His left hand', 'His left abdomen', 'His left shoulder');//2
+addQuestions(`What region of Rohan has already fallen to Saruman before the Battle of Helm's Deep?`, 'The Eastfold', `The King's Land`, 'The Westfold', 'The Fenmarch', 'The Westfold');//3
+addQuestions(`Who in the films first calls the One Ring "My Precious"?`, 'Gollum', `Frodo`, 'Gandalf', 'Bilbo', 'Bilbo');//4
+addQuestions(`Who is the first member of the Fellowship to kill one of the Uruk-hai?`, 'Aragorn', `Boromir`, 'Legolas', 'Gimli', 'Aragorn');//1
+addQuestions(`What tower in Minas Tirith does Boromir talk to Aragorn about in Lothlorien?`, 'Amon Sul', `Ecthelion`, 'Cirith Ungol', 'Narchost', 'Ecthelion');//2
+addQuestions(`How many rabbits does Gollum catch and drop in Frodo's lap on the way to Mordor?`, 'One', `Two`, 'Three', 'Four', 'Two');//2
+addQuestions(`Who in the Fellowship first hears the sound of the Horn of Gondor at Amon Hen?`, 'Aragorn', `Gimli`, 'Legolas', 'Frodo', 'Legolas');//3
+addQuestions(`Which of her relatives does Arwen insist Frodo be taken to after his Amon Sul wounding?`, 'Her brother', `Her sister`, 'Her mother', 'Her father', 'Her father');//4
+addQuestions(`What's the name of the Hobbit girl that Sam is too shy to dance with at Bilbo's party?`, 'Rosie', `Laura`, 'Daisy', 'Pearl', 'Rosie');//1
+addQuestions(`What does Aragorn place in Boromir's hands before he dies?`, 'The Horn of Gondor', `Boromir's shield`, `Boromir's sword`, `Aragorn's necklace`, `Boromir's sword`);//3
+addQuestions(`Who says this about Helm's Deep: "Saruman's arm will have grown long indeed if he thinks he can reach us here"?`, 'Gandalf', `Aragorn`, `Eomer`, `Theoden`, `Theoden`);//4
 
 
 
