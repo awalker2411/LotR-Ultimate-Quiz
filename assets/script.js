@@ -12,7 +12,6 @@ const movieClips = [
     "https://www.youtube-nocookie.com/embed/hUS9Oy96YPQ?autoplay=1&mute=1", //Gandalf vs. Saruman
     "https://www.youtube-nocookie.com/embed/3bReJswiMGM?autoplay=1&mute=1", //You Shall Not Pass
     "https://www.youtube-nocookie.com/embed/k1U1c5hdKGU?autoplay=1&mute=1", //Sneaky Little Hobbitses
-    "https://www.youtube-nocookie.com/embed/FGrLrBYe_4U?autoplay=1&mute=1", //Helms Deep Battle Begins
     "https://www.youtube-nocookie.com/embed/Cvr5Nf8eUpg?autoplay=1&mute=1", //Bilbo Birthday Disappearance
     "https://www.youtube-nocookie.com/embed/VhCts2eBJus?autoplay=1&mute=1", //Weathertop
     "https://www.youtube-nocookie.com/embed/Bypor4e04rg?autoplay=1&mute=1", //Council of the Ring
@@ -132,6 +131,7 @@ addQuestions(`Who says this about Helm's Deep: "Saruman's arm will have grown lo
 const introCard = document.getElementById('introCard');
 const quizCard = document.getElementById('quizCard');
 const scoresCard = document.querySelector('#scoresCard')
+const homeBtn = document.querySelector('#homeBtn');
 const startBtn = document.getElementById('startQuizBtn');
 const scoreBtn = document.querySelector('#scoreBtn');
 const scoresTitle = document.querySelector('#scoresTitle');
@@ -292,7 +292,7 @@ function saveUserScore() {
     
     addUserScore(usernameValue, answeredCorrectly, date);
     
-    userSubmitBtn.classList.add('d-none');
+    handleScoreEvent();
 }
 
 
@@ -403,6 +403,19 @@ function handleSubmitEvent() {
 }
 
 
+function handleHomeEvent(){
+    if(!introCard.classList.contains('d-none')){
+        return;
+    }else{
+        introCard.classList.remove('d-none');
+        quizCard.classList.add('d-none');
+        quizEndCard.classList.add('d-none');
+        scoresCard.classList.add('d-none');
+    }
+}
+
+
+homeBtn.addEventListener('click', handleHomeEvent);
 startBtn.addEventListener('click', handleStartEvent);
 scoreBtn.addEventListener('click', handleScoreEvent);
 submitBtn.addEventListener('click', handleSubmitEvent);
