@@ -15,3 +15,26 @@
     padding-top: 40px;
     padding-bottom: 40px;
 }
+
+/* Media Queries */
+
+@media only screen and (max-width: 768px){
+    #clipSpace{
+        display: none;
+    }
+    .navbar-text{
+        padding-left: 30vw;
+    }
+}
+
+@media only screen and (max-width: 575px){
+    #mainContainer{
+        padding-left: 10vw;    
+    }
+}
+
+@media only screen and (max-width: 350px){
+    .navbar-text{
+        padding-left: 10vw;    
+    }
+}
