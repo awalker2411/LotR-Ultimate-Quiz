@@ -117,7 +117,7 @@ function handleScoreEvent() {
     const scoresCardContent = document.querySelector('#scoresCardContent');
     const checkScores = JSON.parse(localStorage.getItem('allUserScores'));
 
-    if(checkScores.length === 0){
+    if(checkScores === null){
         scoresCardContent.innerHTML = "You haven't taken the LotR: Ultimate Quiz yet! Click the 'Start Quiz' button at the top of the page to begin!"
     }else{
         const grabScores = JSON.parse(localStorage.getItem('allUserScores'));
