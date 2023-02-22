@@ -1,0 +1,14 @@
+//Constructor function for User Scores
+function UserScore(user, score, date) {
+    this.user = user;
+    this.score = score;
+    this.date = date;
+}
+
+//Adding user scores to local storage
+function addUserScore(user, score, date) {
+    const newUserScore = new UserScore(user, score, date);
+    const grabScores = JSON.parse(localStorage.getItem('allUserScores'));
+    grabScores.push(newUserScore);
+    localStorage.setItem('allUserScores', JSON.stringify(grabScores));
+}

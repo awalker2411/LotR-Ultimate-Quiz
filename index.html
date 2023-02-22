@@ -8,7 +8,12 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/style.css">
-    <script defer src="./assets/script.js"></script>
+    <link href="./assets/images">
+    <script defer src="./assets/lists/questionsList.js"></script>
+    <script defer src="./assets/lists/userScores.js"></script>
+    <script defer src="./assets/lists/clipsList.js"></script>
+    <script defer src="./assets/helpers/eventHandlers.js"></script>
+    <script defer src="./assets/main.js"></script>
     <title>Lord of the Rings: Ultimate Quiz</title>
 </head>
 <body class="body-background">
@@ -31,7 +36,7 @@
             <iframe src="" allow="autoplay" allowfullscreen class="col" id="clipSpace"></iframe>
             
             <div class="card text-center text-bg-dark col" id="introCard">
-                <img src="assets/oneRing.gif" class="card-img-top" alt="The One Ring drops on Frodo's finger">
+                <img src="assets/images/oneRing.gif" class="card-img-top" alt="The One Ring drops on Frodo's finger">
                 <div class="card-body">
                     <h1 class="card-title">About the Quiz</h1>
                     <p class="card-text fs-3">Welcome to the Lord of the Rings: Ultimate Quiz! This quiz will challenge you with questions based on the Peter Jackson trilogy of Lord of the Rings movies. Click the 'Start Quiz' button at the top left of the page to start your 60 second quiz!</p>
@@ -39,7 +44,7 @@
             </div>
 
             <div class="card text-center text-bg-dark col d-none" id="scoresCard">
-                <img src="assets/scoresGif.gif" class="card-img-top" alt="...">
+                <img src="assets/images/scoresGif.gif" class="card-img-top" alt="Hobbits clapping">
                 <div class="card-body">
                     <h1 class="card-title" id="scoresTitle">Your Quiz Scores</h1>
                     <p class="card-text" id="scoresCardContent"></p>
@@ -73,7 +78,7 @@
             </div>
 
             <div class="card text-center text-bg-dark col d-none" id="quizEndCard">
-                <img src="assets/endQuizGif.gif" class="card-img-top" alt="...">
+                <img src="assets/images/endQuizGif.gif" class="card-img-top" alt="Frodo saying 'It's done'">
                 <div class="card-body">
                     <h1 class="card-title">You've Completed the Quiz!</h1>
                     <p class="card-text">Congrats on completing the Lord of the Rings: Ultimate Quiz!</p>
