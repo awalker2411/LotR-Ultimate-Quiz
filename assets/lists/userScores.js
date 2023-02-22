@@ -8,7 +8,11 @@ function UserScore(user, score, date) {
 //Adding user scores to local storage
 function addUserScore(user, score, date) {
     const newUserScore = new UserScore(user, score, date);
-    const grabScores = JSON.parse(localStorage.getItem('allUserScores'));
+    let grabScores = JSON.parse(localStorage.getItem('allUserScores'));
+
+    if(grabScores === null){
+        grabScores = [];
+    }
     grabScores.push(newUserScore);
     localStorage.setItem('allUserScores', JSON.stringify(grabScores));
 }
