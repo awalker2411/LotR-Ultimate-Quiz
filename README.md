@@ -1,7 +1,7 @@
 # LotR-Ultimate-Quiz
 Partake in the Ultimate Lord of the Rings Quiz! You'll have 60 seconds to answer as many Lord of the Rings questions as possible.
 
-*Usage*
+*USAGE*
 <br>Click the 'Start Quiz' buttton to begin the 60 second interval.
 <br>Questions will appear with 4 possible choices - pick one and click submit to move on to the next question.
 <br>Each question answered correctly will add 1 point to your total score.
