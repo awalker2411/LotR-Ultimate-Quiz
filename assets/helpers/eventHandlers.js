@@ -134,6 +134,8 @@ function handleScoreEvent() {
             userContent.innerHTML = `Username: `+userQuizInfo.user+` | Score: `+userQuizInfo.score+` | `+userQuizInfo.date;
             newList.appendChild(userContent);
         })
+
+        scoresCardContent.remove();
     }
 }
 
